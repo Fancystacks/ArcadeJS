@@ -43,7 +43,8 @@ body {
   justify-content: center;
   width: 200px;
   height: 50px;
-  border: 5px darkblue solid;
+  border: 5px palevioletred solid;
+  border-radius: 6px;
   background: black;
   margin-top: 20px;
   color: white;
