@@ -179,7 +179,26 @@ var _setup = require("./setup");
 
 var gameGrid = document.querySelector('#game');
 var scoreBox = document.querySelector('#score');
-var startButton = document.querySelector('#start-button');
+var startButton = document.querySelector('#start-button'); // game constant variables
+
+var POWER_PILL_TIME = 10000; //ms
+
+var GLOBAL_SPEED = 80; //ms
+// initial setup
+
+var score = 0;
+var timer = null;
+var winGame = false;
+var powerPillActive = false;
+var powerPillTimer = null;
+
+function gameOver(pacman, grid) {}
+
+function checkCollision(pacman, grid) {}
+
+function gameLoop(pacman, ghosts) {}
+
+function startGame() {}
 },{"./setup":"setup.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
