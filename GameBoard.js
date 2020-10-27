@@ -48,5 +48,11 @@ class GameBoard {
         this.grid.position.style.transform = `rotate(${degrees}deg)`;
     }
 
-    
+    static createGameBoard(DOMGrid, level) {
+        const board = new this(DOMGrid);
+        board.createGrid(level);
+        return board;
+    }
 }
+
+export default GameBoard;

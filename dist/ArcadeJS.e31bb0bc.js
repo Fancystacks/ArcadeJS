@@ -172,10 +172,119 @@ var CLASS_LIST = [OBJECT_TYPE.BLANK, OBJECT_TYPE.WALL, OBJECT_TYPE.DOT, OBJECT_T
 exports.CLASS_LIST = CLASS_LIST;
 var LEVEL = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 1, 7, 1, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 1, 7, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 2, 2, 1, 2, 2, 2, 1, 1, 2, 2, 2, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 0, 0, 0, 1, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 0, 0, 0, 0, 0, 0, 1, 2, 1, 2, 1, 9, 9, 9, 9, 1, 2, 1, 2, 1, 0, 0, 0, 1, 1, 1, 1, 2, 1, 2, 1, 9, 9, 9, 9, 1, 2, 1, 2, 1, 1, 1, 1, 1, 0, 0, 0, 2, 2, 2, 1, 9, 9, 9, 9, 1, 2, 2, 2, 0, 0, 0, 1, 1, 1, 1, 1, 2, 1, 2, 1, 9, 9, 9, 9, 1, 2, 1, 2, 1, 1, 1, 1, 0, 0, 0, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 0, 0, 0, 0, 0, 0, 1, 2, 1, 2, 0, 0, 0, 0, 0, 0, 2, 1, 2, 1, 0, 0, 0, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1, 2, 2, 2, 1, 1, 2, 2, 2, 1, 2, 2, 2, 2, 1, 1, 2, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 7, 1, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 1, 7, 1, 1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 exports.LEVEL = LEVEL;
-},{}],"index.js":[function(require,module,exports) {
+},{}],"GameBoard.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _setup = require("./setup");
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var GameBoard = /*#__PURE__*/function () {
+  function GameBoard(DOMGrid) {
+    _classCallCheck(this, GameBoard);
+
+    this.dotCount = 0;
+    this.grid = [];
+    this.DOMGrid = DOMGrid;
+  }
+
+  _createClass(GameBoard, [{
+    key: "showGameStatus",
+    value: function showGameStatus(winGame) {
+      var div = document.createElement('div');
+      div.classList.add('game-status');
+      div.innerHTML = "".concat(winGame ? "WINNER!" : "GAME OVER!");
+      this.DOMGrid.appendChild(div);
+    }
+  }, {
+    key: "createGrid",
+    value: function createGrid(level) {
+      var _this = this;
+
+      // wipe divs & grid upon start
+      this.dotCount = 0;
+      this.grid = [];
+      this.DOMGrid.innerHTML = '';
+      this.DOMGrid.style.cssText = "grid-template-columns: repeat(".concat(_setup.GRID_SIZE, ", ").concat(_setup.CELL_SIZE, "px)");
+      level.forEach(function (square) {
+        var div = document.createElement('div');
+        div.classList.add('square', _setup.CLASS_LIST[square]);
+        div.style.cssText = "width: ".concat(_setup.CELL_SIZE, "px; height: ").concat(_setup.CELL_SIZE, "px;");
+
+        _this.DOMGrid.appendChild(div);
+
+        _this.grid.push(div);
+
+        if (_setup.CLASS_LIST[square] === _setup.OBJECT_TYPE.DOT) _this.dotCount++;
+      });
+    }
+  }, {
+    key: "addObject",
+    value: function addObject(position, classes) {
+      var _this$grid$position$c;
+
+      (_this$grid$position$c = this.grid[position].classList).add.apply(_this$grid$position$c, _toConsumableArray(classes));
+    }
+  }, {
+    key: "removeObject",
+    value: function removeObject(position, classes) {
+      var _this$grid$position$c2;
+
+      (_this$grid$position$c2 = this.grid[position].classList).remove.apply(_this$grid$position$c2, _toConsumableArray(classes));
+    }
+  }, {
+    key: "objectExists",
+    value: function objectExists(position, object) {
+      return this.grid[position].classList.contains(object);
+    }
+  }, {
+    key: "rotateDiv",
+    value: function rotateDiv(position, degrees) {
+      this.grid.position.style.transform = "rotate(".concat(degrees, "deg)");
+    }
+  }], [{
+    key: "createGameBoard",
+    value: function createGameBoard(DOMGrid, level) {
+      var board = new this(DOMGrid);
+      board.createGrid(level);
+      return board;
+    }
+  }]);
+
+  return GameBoard;
+}();
+
+var _default = GameBoard;
+exports.default = _default;
+},{"./setup":"setup.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _setup = require("./setup");
+
+var _GameBoard = _interopRequireDefault(require("./GameBoard"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var gameGrid = document.querySelector('#game');
 var scoreBox = document.querySelector('#score');
@@ -184,7 +293,9 @@ var startButton = document.querySelector('#start-button'); // game constant vari
 var POWER_PILL_TIME = 10000; //ms
 
 var GLOBAL_SPEED = 80; //ms
-// initial setup
+
+var gameBoard = _GameBoard.default.createGameBoard(gameGrid, _setup.LEVEL); // initial setup
+
 
 var score = 0;
 var timer = null;
@@ -199,7 +310,7 @@ function checkCollision(pacman, grid) {}
 function gameLoop(pacman, ghosts) {}
 
 function startGame() {}
-},{"./setup":"setup.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./setup":"setup.js","./GameBoard":"GameBoard.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
