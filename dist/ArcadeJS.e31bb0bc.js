@@ -402,7 +402,18 @@ function checkCollision(pacman, grid) {}
 
 function gameLoop(pacman, ghosts) {}
 
-function startGame() {}
+function startGame() {
+  winGame = false;
+  powerPillActive = false;
+  score = 0;
+  startButton.classList.add('hide');
+  gameBoard.createGrid(_setup.LEVEL);
+  var pacman = new _Pacman.default(2, 287);
+  gameBoard.addObject(287, [_setup.OBJECT_TYPE.PACMAN]);
+} // initialize game
+
+
+startButton.addEventListener('click', startGame);
 },{"./setup":"setup.js","./GameBoard":"GameBoard.js","./Pacman":"Pacman.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
