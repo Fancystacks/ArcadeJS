@@ -4,6 +4,8 @@
   "description": "Retro-inspired Pac-Man game 🎮",
   "main": "index.js",
   "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/Fancystacks/ArcadeJS/issues"
   },
-  "homepage": "https://github.com/Fancystacks/ArcadeJS#readme"
+  "homepage": "https://github.com/Fancystacks/ArcadeJS#readme",
+  "dependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
 }
