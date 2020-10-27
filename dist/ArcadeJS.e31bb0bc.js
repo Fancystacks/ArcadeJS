@@ -285,6 +285,7 @@ var GameBoard = /*#__PURE__*/function () {
 
         this.removeObject(character.position, classesToRemove);
         this.addObject(nextMovePosition, classesToAdd);
+        character.setNewPosition(nextMovePosition, direction);
       }
     }
   }], [{

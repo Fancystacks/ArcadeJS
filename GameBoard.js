@@ -62,6 +62,8 @@ class GameBoard {
 
         this.removeObject(character.position, classesToRemove);
         this.addObject(nextMovePosition, classesToAdd);
+
+        character.setNewPosition(nextMovePosition, direction);
       }
     }
 
