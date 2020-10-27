@@ -277,12 +277,105 @@ var GameBoard = /*#__PURE__*/function () {
 
 var _default = GameBoard;
 exports.default = _default;
+},{"./setup":"setup.js"}],"Pacman.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _setup = require("./setup");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Pacman = /*#__PURE__*/function () {
+  function Pacman(speed, startPosition) {
+    _classCallCheck(this, Pacman);
+
+    this.position = startPosition;
+    this.speed = speed;
+    this.dir = null;
+    this.timer = 0;
+    this.powerPill = false;
+    this.rotation = true;
+  }
+
+  _createClass(Pacman, [{
+    key: "shouldMove",
+    value: function shouldMove() {
+      if (!this.dir) return false;
+
+      if (this.timer === this.speed) {
+        this.timer = 0;
+        return true;
+      }
+
+      this.timer++;
+    }
+  }, {
+    key: "getNextMove",
+    value: function getNextMove(objectExists) {
+      var nextMovePosition = this.position + this.dir.movement;
+
+      if (objectExists(nextMovePosition, _setup.OBJECT_TYPE.WALL) || objectExists(nextMovePosition, _setup.OBJECT_TYPE.GHOSTLAIR)) {
+        nextMovePosition = this.position;
+      }
+
+      return {
+        nextMovePosition: nextMovePosition,
+        direction: this.dir
+      };
+    }
+  }, {
+    key: "makeMove",
+    value: function makeMove() {
+      var classesToRemove = [_setup.OBJECT_TYPE.PACMAN];
+      var classesToAdd = [_setup.OBJECT_TYPE.PACMAN];
+      return {
+        classesToRemove: classesToRemove,
+        classesToAdd: classesToAdd
+      };
+    }
+  }, {
+    key: "setNewPosition",
+    value: function setNewPosition(nextMovePosition) {
+      this.position = nextMovePosition;
+    }
+  }, {
+    key: "handleKeyInput",
+    value: function handleKeyInput(event, objectExists) {
+      var dir;
+
+      if (event.keyCode >= 37 && event.keyCode <= 40) {
+        dir = _setup.DIRECTIONS[event.key];
+      } else {
+        return;
+      }
+
+      var nextMovePosition = this.position + dir.movement;
+      if (objectExists(nextMovePosition, _setup.OBJECT_TYPE.WALL)) return;
+      this.dir = dir;
+    }
+  }]);
+
+  return Pacman;
+}();
+
+var _default = Pacman;
+exports.default = _default;
 },{"./setup":"setup.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _setup = require("./setup");
 
 var _GameBoard = _interopRequireDefault(require("./GameBoard"));
+
+var _Pacman = _interopRequireDefault(require("./Pacman"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -310,7 +403,7 @@ function checkCollision(pacman, grid) {}
 function gameLoop(pacman, ghosts) {}
 
 function startGame() {}
-},{"./setup":"setup.js","./GameBoard":"GameBoard.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./setup":"setup.js","./GameBoard":"GameBoard.js","./Pacman":"Pacman.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

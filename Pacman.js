@@ -50,5 +50,11 @@ class Pacman {
         } else {
             return;
         }
+
+        const nextMovePosition = this.position + dir.movement;
+        if (objectExists(nextMovePosition, OBJECT_TYPE.WALL)) return;
+        this.dir = dir;
     }
 }
+
+export default Pacman;
