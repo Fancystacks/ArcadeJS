@@ -26,6 +26,27 @@ class GameBoard {
             div.classList.add('square', CLASS_LIST[square]);
             div.style.cssText = `width: ${CELL_SIZE}px; height: ${CELL_SIZE}px;`;
             this.DOMGrid.appendChild(div);
+            this.grid.push(div);
+
+            if (CLASS_LIST[square] === OBJECT_TYPE.DOT) this.dotCount++;
         })
     }
+
+    addObject(position, classes) {
+        this.grid[position].classList.add(...classes);
+    }
+
+    removeObject(position, classes) {
+        this.grid[position].classList.remove(...classes);
+    }
+
+    objectExists(position, object) {
+        return this.grid[position].classList.contains(object);
+    }
+
+    rotateDiv(position, degrees) {
+        this.grid.position.style.transform = `rotate(${degrees}deg)`;
+    }
+
+    
 }
