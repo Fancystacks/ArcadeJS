@@ -43,6 +43,7 @@ class Pacman {
     }
 
     handleKeyInput(event, objectExists) {
+        console.log(event);
         let dir;
 
         if (event.keyCode >= 37 && event.keyCode <= 40) {

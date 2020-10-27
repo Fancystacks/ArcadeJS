@@ -200,9 +200,17 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var GameBoard = /*#__PURE__*/function () {
   function GameBoard(DOMGrid) {
+    var _this = this;
+
     _classCallCheck(this, GameBoard);
+
+    _defineProperty(this, "objectExists", function (position, object) {
+      return _this.grid[position].classList.contains(object);
+    });
 
     this.dotCount = 0;
     this.grid = [];
@@ -220,7 +228,7 @@ var GameBoard = /*#__PURE__*/function () {
   }, {
     key: "createGrid",
     value: function createGrid(level) {
-      var _this = this;
+      var _this2 = this;
 
       // wipe divs & grid upon start
       this.dotCount = 0;
@@ -232,11 +240,11 @@ var GameBoard = /*#__PURE__*/function () {
         div.classList.add('square', _setup.CLASS_LIST[square]);
         div.style.cssText = "width: ".concat(_setup.CELL_SIZE, "px; height: ").concat(_setup.CELL_SIZE, "px;");
 
-        _this.DOMGrid.appendChild(div);
+        _this2.DOMGrid.appendChild(div);
 
-        _this.grid.push(div);
+        _this2.grid.push(div);
 
-        if (_setup.CLASS_LIST[square] === _setup.OBJECT_TYPE.DOT) _this.dotCount++;
+        if (_setup.CLASS_LIST[square] === _setup.OBJECT_TYPE.DOT) _this2.dotCount++;
       });
     }
   }, {
@@ -252,11 +260,6 @@ var GameBoard = /*#__PURE__*/function () {
       var _this$grid$position$c2;
 
       (_this$grid$position$c2 = this.grid[position].classList).remove.apply(_this$grid$position$c2, _toConsumableArray(classes));
-    }
-  }, {
-    key: "objectExists",
-    value: function objectExists(position, object) {
-      return this.grid[position].classList.contains(object);
     }
   }, {
     key: "rotateDiv",
@@ -349,6 +352,7 @@ var Pacman = /*#__PURE__*/function () {
   }, {
     key: "handleKeyInput",
     value: function handleKeyInput(event, objectExists) {
+      console.log(event);
       var dir;
 
       if (event.keyCode >= 37 && event.keyCode <= 40) {
@@ -410,6 +414,9 @@ function startGame() {
   gameBoard.createGrid(_setup.LEVEL);
   var pacman = new _Pacman.default(2, 287);
   gameBoard.addObject(287, [_setup.OBJECT_TYPE.PACMAN]);
+  document.addEventListener('keydown', function (event) {
+    return pacman.handleKeyInput(event, gameBoard.objectExists);
+  });
 } // initialize game
 
 
