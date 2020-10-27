@@ -48,6 +48,23 @@ class GameBoard {
         this.grid.position.style.transform = `rotate(${degrees}deg)`;
     }
 
+    moveCharacter(character) {
+    if (character.shouldMove()) {
+        const { nextMovePosition, direction } = character.getNextMove(
+            this.objectExists
+        );
+        const { classesToRemove, classesToAdd } = character.makeMove();
+
+        if (character.rotation && nextMovePosition !== character.position) {
+            this.rotateDiv(nextMovePosition, character.dir.rotation);
+            this.rotateDiv(character.position, 0);
+        }
+
+        this.removeObject(character.position, classesToRemove);
+        this.addObject(nextMovePosition, classesToAdd);
+      }
+    }
+
     static createGameBoard(DOMGrid, level) {
         const board = new this(DOMGrid);
         board.createGrid(level);

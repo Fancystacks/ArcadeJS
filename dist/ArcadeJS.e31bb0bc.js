@@ -266,6 +266,27 @@ var GameBoard = /*#__PURE__*/function () {
     value: function rotateDiv(position, degrees) {
       this.grid.position.style.transform = "rotate(".concat(degrees, "deg)");
     }
+  }, {
+    key: "moveCharacter",
+    value: function moveCharacter(character) {
+      if (character.shouldMove()) {
+        var _character$getNextMov = character.getNextMove(this.objectExists),
+            nextMovePosition = _character$getNextMov.nextMovePosition,
+            direction = _character$getNextMov.direction;
+
+        var _character$makeMove = character.makeMove(),
+            classesToRemove = _character$makeMove.classesToRemove,
+            classesToAdd = _character$makeMove.classesToAdd;
+
+        if (character.rotation && nextMovePosition !== character.position) {
+          this.rotateDiv(nextMovePosition, character.dir.rotation);
+          this.rotateDiv(character.position, 0);
+        }
+
+        this.removeObject(character.position, classesToRemove);
+        this.addObject(nextMovePosition, classesToAdd);
+      }
+    }
   }], [{
     key: "createGameBoard",
     value: function createGameBoard(DOMGrid, level) {
