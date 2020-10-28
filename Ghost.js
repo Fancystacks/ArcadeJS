@@ -37,6 +37,13 @@ class Ghost{
 
        if (this.isScared) classesToAdd = [...classesToAdd, OBJECT_TYPE.SCARED];
 
-       
+       return { classesToRemove, classesToAdd };
+   }
+
+   setNewPosition(nextMovePosition, direction) {
+       this.position = nextMovePosition;
+       this.dir = direction;
    }
 }
+
+export default Ghost;

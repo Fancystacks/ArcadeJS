@@ -393,6 +393,34 @@ var Pacman = /*#__PURE__*/function () {
 
 var _default = Pacman;
 exports.default = _default;
+},{"./setup":"setup.js"}],"ghostMoves.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.randomMovement = randomMovement;
+
+var _setup = require("./setup");
+
+function randomMovement(position, direction, objectExists) {
+  var dir = direction;
+  var nextMovePosition = position + dir.movement; // array from the direction object keys
+
+  var keys = Object.keys(_setup.DIRECTIONS);
+
+  while (objectExists(nextMovePosition, _setup.OBJECT_TYPE.WALL) || objectExists(nextMovePosition, _setup.OBJECT_TYPE.GHOST)) {
+    // get random key from array for ghost movements
+    var key = keys[Math.floor(Math.random() + keys.length)];
+    dir = _setup.DIRECTIONS[key];
+    nextMovePosition = position + dir.movement;
+  }
+
+  return {
+    nextMovePosition: nextMovePosition,
+    direction: dir
+  };
+}
 },{"./setup":"setup.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -401,6 +429,8 @@ var _setup = require("./setup");
 var _GameBoard = _interopRequireDefault(require("./GameBoard"));
 
 var _Pacman = _interopRequireDefault(require("./Pacman"));
+
+var _ghostMoves = require("./ghostMoves");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -447,7 +477,7 @@ function startGame() {
 
 
 startButton.addEventListener('click', startGame);
-},{"./setup":"setup.js","./GameBoard":"GameBoard.js","./Pacman":"Pacman.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./setup":"setup.js","./GameBoard":"GameBoard.js","./Pacman":"Pacman.js","./ghostMoves":"ghostMoves.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
