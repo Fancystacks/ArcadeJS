@@ -25,7 +25,7 @@ function gameOver(pacman, grid) {
 
 }
 
-function checkCollision(pacman, grid) {
+function checkCollision(pacman, ghosts) {
     const collidedGhost = ghosts.find(ghost => pacman.position === ghost.position);
 
     if (collidedGhost) {
@@ -47,8 +47,10 @@ function checkCollision(pacman, grid) {
 
 function gameLoop(pacman, ghosts) {
     gameBoard.moveCharacter(pacman);
+    checkCollision(pacman, ghosts);
 
-    ghosts.forEach(ghost => gameBoard.moveCharacter(ghost));
+    ghosts.forEach((ghost) => gameBoard.moveCharacter(ghost));
+    checkCollision(pacman, ghosts);
 }
 
 function startGame() {
@@ -74,7 +76,6 @@ function startGame() {
 
     timer = setInterval(() => gameLoop(pacman, ghosts), GLOBAL_SPEED);
 }
-
 
 // initialize game
 startButton.addEventListener('click', startGame);

@@ -546,7 +546,7 @@ var powerPillTimer = null;
 
 function gameOver(pacman, grid) {}
 
-function checkCollision(pacman, grid) {
+function checkCollision(pacman, ghosts) {
   var collidedGhost = ghosts.find(function (ghost) {
     return pacman.position === ghost.position;
   });
@@ -566,9 +566,11 @@ function checkCollision(pacman, grid) {
 
 function gameLoop(pacman, ghosts) {
   gameBoard.moveCharacter(pacman);
+  checkCollision(pacman, ghosts);
   ghosts.forEach(function (ghost) {
     return gameBoard.moveCharacter(ghost);
   });
+  checkCollision(pacman, ghosts);
 }
 
 function startGame() {
@@ -618,7 +620,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54820" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55896" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
