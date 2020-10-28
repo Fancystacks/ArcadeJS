@@ -577,7 +577,20 @@ function gameLoop(pacman, ghosts) {
   ghosts.forEach(function (ghost) {
     return gameBoard.moveCharacter(ghost);
   });
-  checkCollision(pacman, ghosts);
+  checkCollision(pacman, ghosts); // checking if pacman eats a circle
+
+  if (gameBoard.objectExists(pacman.position, _setup.OBJECT_TYPE.DOT)) {
+    gameBoard.removeObject(pacman.position, [_setup.OBJECT_TYPE.DOT]);
+    gameBoard.dotCount--;
+    score += 10;
+  } // checking if pacman ate powerpill
+
+
+  if (gameBoard.objectExists(pacman.position, _setup.OBJECT_TYPE.PILL)) {
+    gameBoard.removeObject(pacman.position, [_setup.OBJECT_TYPE.PILL]);
+    pacman.powerPill = true;
+    score += 50;
+  }
 }
 
 function startGame() {
