@@ -53,7 +53,10 @@ class Pacman {
         }
 
         const nextMovePosition = this.position + dir.movement;
-        if (objectExists(nextMovePosition, OBJECT_TYPE.WALL)) return;
+        if (
+            objectExists(nextMovePosition, OBJECT_TYPE.WALL) ||
+            objectExists(nextMovePosition, OBJECT_TYPE.GHOSTLAIR)
+            ) return;
         this.dir = dir;
     }
 }

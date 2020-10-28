@@ -383,7 +383,7 @@ var Pacman = /*#__PURE__*/function () {
       }
 
       var nextMovePosition = this.position + dir.movement;
-      if (objectExists(nextMovePosition, _setup.OBJECT_TYPE.WALL)) return;
+      if (objectExists(nextMovePosition, _setup.OBJECT_TYPE.WALL) || objectExists(nextMovePosition, _setup.OBJECT_TYPE.GHOSTLAIR)) return;
       this.dir = dir;
     }
   }]);
