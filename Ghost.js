@@ -23,6 +23,20 @@ class Ghost{
    }
 
    getNextMove(objectExists) {
+       const { nextMovePosition, direction } = this.movement(
+           this.position,
+           this.dir,
+           objectExists
+       );
+       return { nextMovePosition, direction }
+   }
+
+   makeMove() {
+       const classesToRemove = [OBJECT_TYPE.GHOST, OBJECT_TYPE.SCARED, this.name];
+       let classesToAdd = [OBJECT_TYPE.GHOST, this.name];
+
+       if (this.isScared) classesToAdd = [...classesToAdd, OBJECT_TYPE.SCARED];
+
        
    }
 }
