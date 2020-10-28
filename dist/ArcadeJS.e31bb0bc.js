@@ -426,7 +426,9 @@ function gameOver(pacman, grid) {}
 
 function checkCollision(pacman, grid) {}
 
-function gameLoop(pacman, ghosts) {}
+function gameLoop(pacman, ghosts) {
+  console.log("It works.");
+}
 
 function startGame() {
   winGame = false;
@@ -439,8 +441,11 @@ function startGame() {
   document.addEventListener('keydown', function (event) {
     return pacman.handleKeyInput(event, gameBoard.objectExists);
   });
-} // initialize game
+}
 
+timer = setInterval(function () {
+  return gameLoop(pacman);
+}, GLOBAL_SPEED); // initialize game
 
 startButton.addEventListener('click', startGame);
 },{"./setup":"setup.js","./GameBoard":"GameBoard.js","./Pacman":"Pacman.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
