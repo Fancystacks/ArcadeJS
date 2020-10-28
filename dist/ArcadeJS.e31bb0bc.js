@@ -590,6 +590,18 @@ function gameLoop(pacman, ghosts) {
     gameBoard.removeObject(pacman.position, [_setup.OBJECT_TYPE.PILL]);
     pacman.powerPill = true;
     score += 50;
+    clearTimeout(powerPillTimer);
+    powerPillTimer = setTimeout(function () {
+      return pacman.powerPill = false;
+    }, POWER_PILL_TIME);
+  } // change scared ghosts to blue
+
+
+  if (pacman.powerPill !== powerPillActive) {
+    powerPillActive = pacman.powerPill;
+    ghosts.forEach(function (ghost) {
+      return ghost.isScared = pacman.powerPill;
+    });
   }
 }
 
