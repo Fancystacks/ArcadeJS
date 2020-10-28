@@ -11,7 +11,7 @@ class Pacman {
     }
 
     shouldMove() {
-        if (!this.dir) return false;
+        if (!this.dir) return;
 
         if (this.timer === this.speed) {
             this.timer = 0;
@@ -19,6 +19,7 @@ class Pacman {
         }
         this.timer++;
     }
+
     getNextMove(objectExists) {
         let nextMovePosition = this.position + this.dir.movement;
 
@@ -35,7 +36,7 @@ class Pacman {
         const classesToRemove = [OBJECT_TYPE.PACMAN];
         const classesToAdd = [OBJECT_TYPE.PACMAN];
 
-        return { classesToRemove, classesToAdd}
+        return { classesToRemove, classesToAdd }
     }
 
     setNewPosition(nextMovePosition) {
@@ -43,11 +44,10 @@ class Pacman {
     }
 
     handleKeyInput(event, objectExists) {
-        console.log(event);
         let dir;
 
         if (event.keyCode >= 37 && event.keyCode <= 40) {
-            dir = DIRECTIONS[event.key]
+            dir = DIRECTIONS[event.key];
         } else {
             return;
         }

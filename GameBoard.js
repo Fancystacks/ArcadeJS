@@ -29,7 +29,7 @@ class GameBoard {
             this.grid.push(div);
 
             if (CLASS_LIST[square] === OBJECT_TYPE.DOT) this.dotCount++;
-        })
+        });
     }
 
     addObject(position, classes) {
@@ -45,7 +45,7 @@ class GameBoard {
     }
 
     rotateDiv(position, degrees) {
-        this.grid.position.style.transform = `rotate(${degrees}deg)`;
+        this.grid[position].style.transform = `rotate(${degrees}deg)`;
     }
 
     moveCharacter(character) {

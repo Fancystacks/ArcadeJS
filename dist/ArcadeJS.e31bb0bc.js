@@ -264,7 +264,7 @@ var GameBoard = /*#__PURE__*/function () {
   }, {
     key: "rotateDiv",
     value: function rotateDiv(position, degrees) {
-      this.grid.position.style.transform = "rotate(".concat(degrees, "deg)");
+      this.grid[position].style.transform = "rotate(".concat(degrees, "deg)");
     }
   }, {
     key: "moveCharacter",
@@ -333,7 +333,7 @@ var Pacman = /*#__PURE__*/function () {
   _createClass(Pacman, [{
     key: "shouldMove",
     value: function shouldMove() {
-      if (!this.dir) return false;
+      if (!this.dir) return;
 
       if (this.timer === this.speed) {
         this.timer = 0;
@@ -374,7 +374,6 @@ var Pacman = /*#__PURE__*/function () {
   }, {
     key: "handleKeyInput",
     value: function handleKeyInput(event, objectExists) {
-      console.log(event);
       var dir;
 
       if (event.keyCode >= 37 && event.keyCode <= 40) {
@@ -427,7 +426,7 @@ function gameOver(pacman, grid) {}
 function checkCollision(pacman, grid) {}
 
 function gameLoop(pacman, ghosts) {
-  console.log("It works.");
+  gameBoard.moveCharacter(pacman);
 }
 
 function startGame() {
@@ -441,11 +440,11 @@ function startGame() {
   document.addEventListener('keydown', function (event) {
     return pacman.handleKeyInput(event, gameBoard.objectExists);
   });
-}
+  timer = setInterval(function () {
+    return gameLoop(pacman);
+  }, GLOBAL_SPEED);
+} // initialize game
 
-timer = setInterval(function () {
-  return gameLoop(pacman);
-}, GLOBAL_SPEED); // initialize game
 
 startButton.addEventListener('click', startGame);
 },{"./setup":"setup.js","./GameBoard":"GameBoard.js","./Pacman":"Pacman.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
