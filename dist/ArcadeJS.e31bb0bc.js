@@ -546,7 +546,23 @@ var powerPillTimer = null;
 
 function gameOver(pacman, grid) {}
 
-function checkCollision(pacman, grid) {}
+function checkCollision(pacman, grid) {
+  var collidedGhost = ghosts.find(function (ghost) {
+    return pacman.position === ghost.position;
+  });
+
+  if (collidedGhost) {
+    if (pacman.powerPill) {
+      gameBoard.removeObject(collidedGhost.position, [_setup.OBJECT_TYPE.GHOST, _setup.OBJECT_TYPE.SCARED, collidedGhost.name]);
+      collidedGhost.position = collidedGhost.startPosition;
+      score += 100;
+    } else {
+      pacman.removeObject(pacman.position, [_setup.OBJECT_TYPE.PACMAN]);
+      gameBoard.rotateDiv(pacman.position, 0);
+      gameOver(pacman, gameGrid);
+    }
+  }
+}
 
 function gameLoop(pacman, ghosts) {
   gameBoard.moveCharacter(pacman);
