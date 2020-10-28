@@ -6,6 +6,11 @@ class Ghost{
        this.movement = movement;
        this.startPosition = startPosition;
        this.position = startPosition;
+       this.dir = DIRECTIONS.ArrowRight;
+       this.speed = speed;
+       this.timer = 0;
+       this.isScared = false;
+       this.rotation = false;
    }
 
 }
