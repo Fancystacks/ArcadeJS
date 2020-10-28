@@ -11,7 +11,7 @@ export function randomMovement(position, direction, objectExists) {
         objectExists(nextMovePosition, OBJECT_TYPE.GHOST)
     ) {
         // get random key from array for ghost movements
-        const key = keys[Math.floor(Math.random() + keys.length)];
+        const key = keys[Math.floor(Math.random() * keys.length)];
 
         dir = DIRECTIONS[key];
 

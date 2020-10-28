@@ -190,7 +190,7 @@ function randomMovement(position, direction, objectExists) {
 
   while (objectExists(nextMovePosition, _setup.OBJECT_TYPE.WALL) || objectExists(nextMovePosition, _setup.OBJECT_TYPE.GHOST)) {
     // get random key from array for ghost movements
-    var key = keys[Math.floor(Math.random() + keys.length)];
+    var key = keys[Math.floor(Math.random() * keys.length)];
     dir = _setup.DIRECTIONS[key];
     nextMovePosition = position + dir.movement;
   }
@@ -550,6 +550,9 @@ function checkCollision(pacman, grid) {}
 
 function gameLoop(pacman, ghosts) {
   gameBoard.moveCharacter(pacman);
+  ghosts.forEach(function (ghost) {
+    return gameBoard.moveCharacter(ghost);
+  });
 }
 
 function startGame() {
@@ -563,9 +566,9 @@ function startGame() {
   document.addEventListener('keydown', function (event) {
     return pacman.handleKeyInput(event, gameBoard.objectExists);
   });
-  var ghosts = [new _Ghost.default(4, 204, _ghostMoves.randomMovement, _setup.OBJECT_TYPE.BLINKY), new _Ghost.default(5, 188, _ghostMoves.randomMovement, _setup.OBJECT_TYPE.PINKY), new _Ghost.default(2, 240, _ghostMoves.randomMovement, _setup.OBJECT_TYPE.INKY), new _Ghost.default(3, 251, _ghostMoves.randomMovement, _setup.OBJECT_TYPE.CLYDE)];
+  var ghosts = [new _Ghost.default(4, 188, _ghostMoves.randomMovement, _setup.OBJECT_TYPE.BLINKY), new _Ghost.default(5, 230, _ghostMoves.randomMovement, _setup.OBJECT_TYPE.PINKY), new _Ghost.default(2, 209, _ghostMoves.randomMovement, _setup.OBJECT_TYPE.INKY), new _Ghost.default(3, 251, _ghostMoves.randomMovement, _setup.OBJECT_TYPE.CLYDE)];
   timer = setInterval(function () {
-    return gameLoop(pacman);
+    return gameLoop(pacman, ghosts);
   }, GLOBAL_SPEED);
 } // initialize game
 

@@ -30,7 +30,9 @@ function checkCollision(pacman, grid) {
 }
 
 function gameLoop(pacman, ghosts) {
-gameBoard.moveCharacter(pacman);
+    gameBoard.moveCharacter(pacman);
+
+    ghosts.forEach(ghost => gameBoard.moveCharacter(ghost));
 }
 
 function startGame() {
@@ -48,13 +50,13 @@ function startGame() {
     pacman.handleKeyInput(event, gameBoard.objectExists));
     
     const ghosts = [
-        new Ghost(4, 204, randomMovement, OBJECT_TYPE.BLINKY),
-        new Ghost(5, 188, randomMovement, OBJECT_TYPE.PINKY),
-        new Ghost(2, 240, randomMovement, OBJECT_TYPE.INKY),
+        new Ghost(4, 188, randomMovement, OBJECT_TYPE.BLINKY),
+        new Ghost(5, 230, randomMovement, OBJECT_TYPE.PINKY),
+        new Ghost(2, 209, randomMovement, OBJECT_TYPE.INKY),
         new Ghost(3, 251, randomMovement, OBJECT_TYPE.CLYDE)
     ];
 
-    timer = setInterval(() => gameLoop(pacman), GLOBAL_SPEED);
+    timer = setInterval(() => gameLoop(pacman, ghosts), GLOBAL_SPEED);
 }
 
 
