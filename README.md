@@ -6,7 +6,7 @@ Retro-inspired Pac-Man game 🎮
 
 `npm install` dependencies
 
-`npm start` to start game - navigate to localhost
+`npm start` to start game, navigate to localhost
 
 ## Usage:
 
@@ -20,8 +20,8 @@ Retro-inspired Pac-Man game 🎮
 
 ### PowerPill allows the Pacman to eat ghosts
 
- <img src="https://user-images.githubusercontent.com/38336934/97514574-af10e780-1954-11eb-9926-c51fa4aecc5f.png" width="490" height="350">
+ <img src="https://user-images.githubusercontent.com/38336934/97515575-f009fb80-1956-11eb-8e81-0d596adeb14c.png" width="490" height="350">
 
 ### Game is over once Pacman collides with a ghost
 
-### This site was deployed on [GitHub Pages](https://fancystacks.github.io/vuejs-meteorology/).
+### Score shows up in the scoreboard

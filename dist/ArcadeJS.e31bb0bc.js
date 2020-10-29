@@ -608,7 +608,10 @@ function gameLoop(pacman, ghosts) {
   if (gameBoard.dotCount === 0) {
     winGame = true;
     gameOver(pacman, ghosts);
-  }
+  } // show score
+
+
+  scoreBox.innerHTML = score;
 }
 
 function startGame() {
