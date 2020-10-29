@@ -16,7 +16,7 @@ Use keyboard direction arrows to navigate
 
  <img src="https://user-images.githubusercontent.com/38336934/97514613-c7810200-1954-11eb-893e-72dd96bee0fc.png" width="490" height="350">
 
-Dots and PowerPill disappear as Pacman moves
+### Dots and PowerPill disappear as Pacman touches them
 
 _(Dots are worth 10 points each, ghosts are 100 points
 PowerPills are 50 points)_.
@@ -29,6 +29,8 @@ Scared ghosts & PowerPill will stay active for 10 seconds
 
  <img src="https://user-images.githubusercontent.com/38336934/97515575-f009fb80-1956-11eb-8e81-0d596adeb14c.png" width="490" height="350">
 
-Game is over once Pacman collides with a ghost
+- Game is over once Pacman collides with a ghost
 
-Score shows up in the scoreboard
+- Eating all dots will also result in 'game over'
+
+- Final score shows up in the scoreboard
