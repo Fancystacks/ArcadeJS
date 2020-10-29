@@ -25,7 +25,7 @@ PowerPills are 50 points)_.
 
 ### PowerPill allows the Pacman to eat ghosts
 
-PowerPill will stay active for 10 seconds
+Scared ghosts & PowerPill will stay active for 10 seconds
 
  <img src="https://user-images.githubusercontent.com/38336934/97515575-f009fb80-1956-11eb-8e81-0d596adeb14c.png" width="490" height="350">
 
